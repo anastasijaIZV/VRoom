@@ -4,7 +4,7 @@
 **Testing abjective:**
 Make a playground with invisible borders for the player to freely move but not interact with objects.
 
-**Questions for testing team**
+**Questions for testing team (Riga-Rally)**
 1. Is the player movement and jump speed and mouse sensitivity to you liking? If not, what could be changed?
 2. Is the size of the player and scale of the world and objects in it to your liking? If not, what could be changed?
 3. Are there any glitches? If there are, provide photo or video.
