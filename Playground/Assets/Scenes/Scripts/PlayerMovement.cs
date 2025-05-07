@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Camera playerCamera;
-     public Transform head;
-     public Rigidbody rb;
+    public Transform head;
+    public Rigidbody rb;
 
      [Header("Movement")]
     public float walkSpeed = 6f;
@@ -54,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
     private bool sliding;
 
     private bool canMove = true;
-Transform attachedObject = null;
-   float attachedDistance = 0f;
+    Transform attachedObject = null;
+    float attachedDistance = 0f;
 
     void Start()
     {
@@ -157,7 +157,7 @@ Transform attachedObject = null;
         newVelocity.x = Input.GetAxis("Horizontal") * speed;
         newVelocity.z = Input.GetAxis("Vertical") * speed;
 
-if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f)) {
+    if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f)) {
             isGrounded = true;
 
             //  Check the ground tag for different walking sounds
@@ -209,11 +209,14 @@ Vector3 e = head.eulerAngles;
             head.localEulerAngles = e;
         }
 
-        // Vertical rotation
 
 
-        bool cast = Physics.Raycast(head.position, head.forward, out hit, itemPickupDistance);
+        // Picking objects
+        RaycastHit hit2; 
+        bool cast = Physics.Raycast(head.position, head.forward, out hit2, itemPickupDistance);
 
+
+        print(cast);
 
         if (Input.GetKeyDown(KeyCode.F)) {
             //  Drop the picked object
@@ -233,8 +236,8 @@ Vector3 e = head.eulerAngles;
             //  Pick up an object
             else {
                 if (cast) {
-                    if (hit.transform.CompareTag("pickable")) {
-                        attachedObject = hit.transform;
+                    if (hit2.transform.CompareTag("pickable")) {
+                        attachedObject = hit2.transform;
                         attachedObject.SetParent(transform);
 
                         attachedDistance = Vector3.Distance(attachedObject.position, head.position);
@@ -251,7 +254,6 @@ Vector3 e = head.eulerAngles;
                 }
             }
         }
-
     }
 
     void FixedUpdate(){
